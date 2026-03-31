@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conflict Resolution — Project Detail</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #242D35; --accent: #FE5000; --bg-main: #FBFBFA; --muted: #7D8166;
+    --serif: 'DM Serif Display', serif; --sans: 'DM Sans', sans-serif;
+  }
+  body { background: var(--bg-main); color: var(--ink); font-family: var(--sans); line-height: 1.8; margin: 0; }
+  
+  .container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 5rem; }
+  .back-btn { display: inline-block; margin-bottom: 2rem; color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; }
+  .back-btn:hover { color: var(--accent); }
+  
+  .project-header h1 { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.1; margin-bottom: 2rem; }
+  .project-meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; border-top: 1px solid #EBEAE8; padding-top: 2rem; margin-bottom: 4rem; }
+  .meta-label { font-size: 0.7rem; text-transform: uppercase; color: var(--accent); letter-spacing: 0.1em; }
+  .meta-value { font-size: 1rem; color: var(--ink); margin-top: 0.5rem; }
+  
+  .content-section { margin-bottom: 5rem; }
+  .content-section h2 { font-family: var(--serif); font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 1px solid #EEE; padding-bottom: 0.5rem; }
+  .content-section h3 { font-size: 1.1rem; color: var(--ink); margin: 2rem 0 1rem; }
+  
+  .highlight-box { background: #F4F4F3; padding: 2rem; border-left: 4px solid var(--accent); margin: 2rem 0; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.5rem; }
+  
+  .tag { font-size: 0.7rem; background: #EBEAE8; padding: 0.2rem 0.6rem; border-radius: 4px; color: var(--muted); text-transform: uppercase; margin-right: 0.5rem; }
+  
+  /* 修正：優化圖片容器樣式 */
+  .fig-container { margin: 4rem 0; text-align: center; }
+  .project-img { 
+      width: 100%; 
+      max-width: 700px; /* 限制流程圖最大寬度 */
+      height: auto; 
+      border-radius: 4px; 
+      transition: box-shadow 0.3s ease;
+  }
+  .fig-caption { font-size: 0.8rem; color: var(--muted); margin-top: 1.2rem; font-style: italic; font-weight: 300; }
+
+  @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="index.html#work" class="back-btn">← Back to Overview</a>
+  
+  <header class="project-header">
+    <h1>跨世代家庭溝通介入設計<br><span style="font-size: 0.6em; color: var(--muted);">Intergenerational Communication Intervention</span></h1>
+    <div class="project-meta-grid">
+      <div><div class="meta-label">Role</div><div class="meta-value">Lead Researcher</div></div>
+      <div><div class="meta-label">Timeline</div><div class="meta-value">2026 - in process</progress></div></div>
+      <div><div class="meta-label">Focus</div><div class="meta-value">Social Computing, Family Dynamics</div></div>
+    </div>
+  </header>
+
+  <section class="content-section">
+    <h2>01. Motivation</h2>
+    <p>跨世代溝通失衡是現代家庭面臨的結構性難題。父母與子女因情緒調節能力不對等，常陷落惡性循環。</p>
+    
+    <div class="highlight-box">
+      <strong>習得性無助感 (Learned Helplessness)</strong><br>
+      長期溝通挫敗使成員內化「溝通無效」的信念，轉而以疏遠取代對話。本研究旨在衝突升溫前提供即時中斷機制。
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>02. Target Audience</h2>
+    <div class="grid-2">
+      <div>
+        <h3>介入潛力</h3>
+        <p style="font-size: 0.9rem; color: var(--muted);">高中至大學階段的子女正處於認同關鍵期，對「被理解」需求極高，是最具介入潛力的窗口期。</p>
+      </div>
+      <div>
+        <h3>行為模式</h3>
+        <ul style="font-size: 0.9rem; color: var(--muted); padding-left: 1rem;">
+          <li>衝突點集中於生涯、作息自由議題</li>
+          <li>衝突後傾向沉默或物理迴避代替修復</li>
+          <li>偏好通訊軟體，但文字易造成語氣誤讀</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>03. Literature & Differentiation</h2>
+    <div class="grid-2">
+        <div style="background: white; border: 1px solid #EBEAE8; padding: 1.5rem;">
+            <span class="tag">Advance 01</span>
+            <h3 style="margin-top: 0.5rem;">介入時機前移</h3>
+            <p style="font-size: 0.85rem; color: var(--muted);">不同於事後反思，我們聚焦於<strong>衝突升溫當下</strong>的生理中斷機制。</p>
+        </div>
+        <div style="background: white; border: 1px solid #EBEAE8; padding: 1.5rem;">
+            <span class="tag">Advance 02</span>
+            <h3 style="margin-top: 0.5rem;">多人同步調節</h3>
+            <p style="font-size: 0.85rem; color: var(--muted);">解決 Lee (2026) 指出的「現有 70% 介入僅針對單一使用者」之缺口，同步納入父母與子女。</p>
+        </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>04. Methodology</h2>
+    <p>我們採用受試者間實驗設計，結合現象學訪談（Phenomenological Interviews）來理解參與者在接收觸覺介入（Haptic Feedback）時的心理體驗。</p>
+
+    <div class="fig-container">
+      <img src="image/intervention_flow_diagram.svg" alt="Family Communication Intervention Process Flow" class="project-img">
+      <p class="fig-caption">Fig 2. 社會計算介入流程：多人同步生理信號偵測、情緒調節與衝突修復路徑</p>
+    </div>
+
+    <div class="highlight-box" style="border-left-color: var(--ink);">
+        <h3 style="margin-top: 0;">本土脈絡建模 (Cultural Context)</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 0;">特別針對台灣家庭中的<strong>面子文化、情感間接表達</strong>等文化特徵進行在地化參數設定，提升介入的社會有效性。</p>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

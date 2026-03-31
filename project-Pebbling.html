@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pebbling Behavior — Project Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --ink: #242D35; --accent: #FE5000; --bg: #FBFBFA; --serif: 'DM Serif Display', serif; --sans: 'DM Sans', sans-serif; --muted: #7D8166; }
+        body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.8; margin: 0; }
+        .container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem; }
+        .back-btn { display: inline-block; margin-bottom: 2rem; color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; }
+        .back-btn:hover { color: var(--accent); }
+        h1 { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 2rem; }
+        .tag-row { display: flex; gap: 1rem; margin-bottom: 3rem; }
+        .tag { border: 1px solid #A2AAAD; padding: 0.3rem 0.8rem; font-size: 0.7rem; text-transform: uppercase; color: var(--muted); }
+        h2 { font-family: var(--serif); font-size: 1.8rem; margin: 3rem 0 1.5rem; border-bottom: 1px solid #EBEAE8; padding-bottom: 0.5rem; }
+        
+        /* 佈局組件 */
+        .highlight-box { background: #F4F4F3; padding: 2rem; border-left: 4px solid var(--accent); margin: 2rem 0; }
+        .image-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2.5rem 0; }
+        .project-img { width: 100%; height: auto; border-radius: 4px; border: 1px solid #EBEAE8; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .image-caption { font-size: 0.75rem; color: var(--muted); margin-top: 0.8rem; text-align: center; line-height: 1.4; }
+
+        @media (max-width: 768px) {
+            .image-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html#work" class="back-btn">← Back to Overview</a>
+        
+        <header>
+            <h1>Digital Pebbling on Instagram:<br><span style="font-size: 0.6em; color: var(--muted);">How Micro-sharing Shapes Relational Intimacy</span></h1>
+            <div class="tag-row">
+                <span class="tag">Qualitative Research</span>
+                <span class="tag">Social Psychology</span>
+                <span class="tag">Phatic Communication</span>
+            </div>
+        </header>
+
+        <section class="content-section">
+            <h2>01. Research Motivation</h2>
+            <p>在當代社群媒體景觀中，人際互動正從以文字為中心的對話，轉向碎片化且媒體豐富的交換。傳統即時通訊常帶來顯著的認知負荷與高回覆期望。</p>
+            
+            <div class="highlight-box">
+                <strong>數位鋪路 (Digital Pebbling)</strong><br>
+                源自巴布亞企鵝築巢習性的命名，指與伴侶或親密好友頻繁分享如 Reels 或迷因等低利害關係內容的行為。這代表了一種從「目標導向溝通」向「寒暄溝通 (Phatic Communication)」的轉向，分享行為本身比內容更具意義 。
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>02. Proposed Research Design</h2>
+            <p>本研究採用兩階段質性研究設計，核心在於深入的用戶訪談與分析，以捕捉定量數據可能遺漏的真實體驗。</p>
+            
+            <h3>Phase One: Lifecycle Mapping</h3>
+            <p>我們將用戶的內部活動劃分為三個時間階段進行調查：</p>
+
+            <div class="image-grid">
+                <div>
+                    <img src="image/pebbling-interview.png" alt="Pre-Pebbling" class="project-img">
+                    <p class="image-caption"><strong>Fig 1. Pre-Pebbling</strong><br>調查最初的分享觸發點與動機 。</p>
+                </div>
+                <div>
+                    <img src="image/pebbling-interview-2.png" alt="During-Pebbling" class="project-img">
+                    <p class="image-caption"><strong>Fig 2. During-Pebbling</strong><br>研究感性溝通如何減輕社交焦慮。</p>
+                </div>
+                <div>
+                    <img src="image/pebbling-interview-3.png" alt="Post-Pebbling" class="project-img">
+                    <p class="image-caption"><strong>Fig 3. Post-Pebbling</strong><br>評估累積的「鵝卵石」如何培育環境感知與共時感。</p>
+                </div>
+            </div>
+
+            <h3>Phase Two: Convergent Analysis</h3>
+            <p>在第二階段中，我們將範圍縮小，針對第一階段識別出的特定共同點進行深入調查，測試關於新技術如何重塑親密關係的具體假設。</p>
+        </section>
+
+        <section class="content-section">
+            <h2>03. Project Timeline</h2>
+            <p>本研究預計於三月啟動，並在六月完成最終論文提交與發表 。</p>
+            <ul style="font-size: 0.9rem; color: var(--muted); padding-left: 1.2rem;">
+                <li><strong>Mar - Apr:</strong>招募、現場工作啟動與半結構化訪談 。</li>
+                <li><strong>May:</strong> 主題分析、案例深挖與論文初稿撰寫。</li>
+                <li><strong>Jun:</strong> 最終論文提交與成果發表。</li>
+            </ul>
+        </section>
+
+        <div style="height: 5rem;"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rural Education — Project Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --ink: #242D35; --accent: #FE5000; --bg: #FBFBFA; --serif: 'DM Serif Display', serif; --sans: 'DM Sans', sans-serif; --muted: #7D8166; }
+        body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.8; margin: 0; }
+        .container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem; }
+        .back-btn { display: inline-block; margin-bottom: 2rem; color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; }
+        .back-btn:hover { color: var(--accent); }
+        h1 { font-family: var(--serif); font-size: 3.5rem; line-height: 1.1; margin-bottom: 2rem; }
+        .tag-row { display: flex; gap: 1rem; margin-bottom: 3rem; }
+        .tag { border: 1px solid #A2AAAD; padding: 0.3rem 0.8rem; font-size: 0.7rem; text-transform: uppercase; color: var(--muted); }
+        
+        h2 { font-family: var(--serif); font-size: 1.8rem; margin: 4rem 0 1.5rem; border-bottom: 1px solid #EBEAE8; padding-bottom: 0.5rem; }
+        h3 { font-family: var(--serif); font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--accent); }
+        
+        .concept-box { background: #F3F2EF; padding: 2.5rem; border-left: 4px solid var(--accent); margin: 2rem 0; }
+        .concept-box p { margin: 0; font-style: italic; color: #4A4A4A; }
+
+        /* 圖片並排容器 */
+        .image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2.5rem 0; }
+        .project-img { width: 100%; height: auto; border-radius: 4px; border: 1px solid #EBEAE8; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .image-caption { font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem; text-align: center; }
+
+        /* 表格樣式 */
+        table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
+        th, td { text-align: left; padding: 1.2rem; border-bottom: 1px solid #EBEAE8; }
+        th { background: #F3F2EF; font-family: var(--serif); text-transform: uppercase; letter-spacing: 0.05em; }
+        tr:hover { background: #fafafa; }
+
+        ul { padding-left: 1.2rem; }
+        li { margin-bottom: 0.8rem; }
+        strong { color: var(--ink); font-weight: 500; }
+
+        @media (max-width: 768px) {
+            .image-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html#work" class="back-btn">← Back to Projects</a>
+        
+        <section>
+            <h1>Bridge the Gap: <br>Rural Education Support System</h1>
+            <div class="tag-row">
+                <span class="tag">UX/UI Design</span>
+                <span class="tag">Social Impact</span>
+                <span class="tag">Hybrid Learning</span>
+            </div>
+
+            <h2>Core Concept</h2>
+            <div class="concept-box">
+                <p>「橋接遠端與現場：以『關係』驅動的偏鄉教育支持系統」</p>
+                <p style="font-style: normal; margin-top: 1rem; font-size: 0.95rem;">我們認為偏鄉教育的關鍵不在於「平台的功能」，而在於「關係的延續」。本計畫透過 <strong>Hybrid（線上+線下）</strong> 模式，將線下志工的真實接觸作為情感基礎，並以線上平台作為日常陪伴的延伸。透過「學習日記」與「點數激勵機制」，將長期的學習動機轉化為可見的進度；最後以「跨縣市探索教育」作為終極獎勵，打破地理屏障，補足偏鄉孩子在生活經驗上的斷層。</p>
+            </div>
+
+            <div class="image-grid">
+                <div>
+                    <img src="image/rural-education.png" alt="獎勵介面" class="project-img">
+                    <p class="image-caption">Fig 1. Gamified Reward Interface</p>
+                </div>
+                <div>
+                    <img src="image/rural-home.png" alt="主頁" class="project-img">
+                    <p class="image-caption">Fig 2. Learning Diary Dashboard</p>
+                </div>
+            </div>
+
+            <h2>Design Challenges</h2>
+            <ul>
+                <li><strong>Relationship Sustainability (關係的斷裂與延續)：</strong> 偏鄉孩子常面臨「營隊結束後志工即離開」的遺棄感。如何讓線下的情感連結有效轉移至線上？</li>
+                <li><strong>Intrinsic vs. Extrinsic Motivation (動機的轉換)：</strong> 挑戰在於如何透過志工引導，讓孩子從「為了獎勵而學」轉化為「因為被理解而想學」。</li>
+                <li><strong>Literacy Gap & Life Experience (素養與經驗斷層)：</strong> 現行素養題高度依賴城市生活經驗（如：搭捷運、看展覽），對偏鄉孩子而言是生命經驗的缺失。</li>
+                <li><strong>Volunteer Commitment (志工負荷管理)：</strong> 如何確保長期線上的陪伴與檢核熱情，不被日常瑣碎磨平？</li>
+            </ul>
+
+            <h2>Proposed Solutions</h2>
+            
+            <h3>A. 關係鞏固與檢核機制</h3>
+            <p><strong>互動式學習日記：</strong> 平台設計類似「社群媒體回饋」模式。志工的檢核不只是「批改」，而是具備情感溫度的「留言與肯定」，建立非同步的陪伴感。</p>
+
+            <h3>B. 多層次點數與獎勵設計</h3>
+            <p><strong>微獎勵 (Micro-incentives)：</strong> 每日日記可獲得虛擬點數，用於解鎖個人化勳章或虛擬寵物。<br>
+               <strong>終極獎勵 (The Grand Goal)：</strong> 累積點數兌換由志工帶領的「跨縣市探索之旅」，將旅遊轉化為移動教室。</p>
+
+            <h3>C. 實境素養強化</h3>
+            <p><strong>場景化探索：</strong> 將遊玩設計成「實踐素養題」，如練習規劃車票、閱讀城市地圖，消除因資訊不對稱帶來的學習挫折感。</p>
+
+            <h3>D. 數據導向的預警回饋</h3>
+            <p><strong>動機偵測：</strong> 追蹤孩子上傳頻率。若頻率下降，系統主動提醒志工進行「線上關懷」，在孩子放棄前介入。</p>
+
+            <h2>Summary</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>範疇 (Category)</th>
+                        <th>Challenge (挑戰)</th>
+                        <th>Solution (對策)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>動機 Motivation</strong></td>
+                        <td>缺乏長期堅持誘因，學習與生活脫節。</td>
+                        <td><strong>學習點數制</strong>將進度量化，以<strong>跨縣市探索</strong>為終極目標。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>關係 Connection</strong></td>
+                        <td>線下活動結束後，志工與孩子連結中斷。</td>
+                        <td><strong>線上日記平台</strong>作為情感橋樑，維持跨時空陪伴。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>素養 Literacy</strong></td>
+                        <td>缺乏城市經驗，難以理解抽象素養題。</td>
+                        <td><strong>志工帶隊出遊</strong>延伸學習場域，補足生活經驗缺失。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>執行 Execution</strong></td>
+                        <td>志工檢核負擔大，孩子容易感到枯燥。</td>
+                        <td><strong>遊戲化介面</strong>與情感回饋，將檢核轉化為互動交流。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>

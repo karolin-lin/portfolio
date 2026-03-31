@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Social Anxiety — Project Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --ink: #242D35; --accent: #FE5000; --bg: #FBFBFA; --serif: 'DM Serif Display', serif; --sans: 'DM Sans', sans-serif; --muted: #7D8166; }
+        body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.8; margin: 0; }
+        .container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem; }
+        .back-btn { display: inline-block; margin-bottom: 2rem; color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; }
+        .back-btn:hover { color: var(--accent); }
+        h1 { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 2rem; }
+        .tag-row { display: flex; gap: 1rem; margin-bottom: 3rem; }
+        .tag { border: 1px solid #A2AAAD; padding: 0.3rem 0.8rem; font-size: 0.7rem; text-transform: uppercase; color: var(--muted); }
+        h2 { font-family: var(--serif); font-size: 1.8rem; margin: 3rem 0 1.5rem; border-bottom: 1px solid #EBEAE8; padding-bottom: 0.5rem; }
+        
+        /* 佈局組件 */
+        .highlight-box { background: #F4F4F3; padding: 2rem; border-left: 4px solid var(--accent); margin: 2rem 0; }
+        .image-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2.5rem 0; }
+        .project-img { width: 100%; height: auto; border-radius: 4px; border: 1px solid #EBEAE8; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .image-caption { font-size: 0.75rem; color: var(--muted); margin-top: 0.8rem; text-align: center; }
+
+        .persona-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; background: #fff; padding: 2rem; border: 1px solid #EBEAE8; margin: 2rem 0; }
+        .persona-header { text-align: center; border-right: 1px solid #EEE; padding-right: 2rem; }
+        
+        @media (max-width: 768px) {
+            .image-grid, .persona-grid { grid-template-columns: 1fr; }
+            .persona-header { border-right: none; padding-right: 0; padding-bottom: 2rem; border-bottom: 1px solid #EEE; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html#work" class="back-btn">← Back to Overview</a>
+        
+        <header>
+            <h1>重新設計社交焦慮者：<br><span style="font-size: 0.6em; color: var(--muted);">正式場合中的社交體驗重塑</span></h1>
+            <div class="tag-row">
+                <span class="tag">Design Thinking</span>
+                <span class="tag">User Research</span>
+                <span class="tag">Coach Talent Cultivation</span>
+            </div>
+        </header>
+
+        <section class="content-section">
+            <h2>01. User Segmentation</h2>
+            <p>我們根據「焦慮程度」與「焦慮與社交的關聯性」兩個維度，將受訪者劃分為不同象限。我們特別鎖定在高壓正式場合中感到不知所措、且難以達到目標的<strong>極端使用者 (Extreme Users)</strong> 作為設計核心。</p>
+            
+            <div class="image-grid">
+                <div>
+                    <img src="image/design-thinking-download.png" alt="Download" class="project-img">
+                    <p class="image-caption"><strong>Fig 1. Download & Grouping</strong><br>從大量訪談資料中萃取關鍵資訊脈絡。</p>
+                </div>
+                <div>
+                    <img src="image/design-thinking-POV.png" alt="POV" class="project-img">
+                    <p class="image-caption"><strong>Fig 2. Persona & POV</strong><br>定義使用者在正式場合下的心理與行為模式 。</p>
+                </div>
+                <div>
+                    <img src="image/design-thinking-ideate.png" alt="Ideate" class="project-img">
+                    <p class="image-caption"><strong>Fig 3. Prototype Iteration</strong><br>建立可測試的假設並進行迭代優化。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>02. Persona: The "High-Pressure Anxious" User</h2>
+            <div class="persona-grid">
+                <div class="persona-header">
+                    <div style="font-size: 3rem;">😟</div>
+                    <h3 style="margin: 1rem 0;">Tina</h3>
+                    <p style="font-size: 0.8rem; color: var(--muted);">高壓不安型使用者</p>
+                </div>
+                <div>
+                    <p><strong>行為特徵：</strong>為了累積履歷而積極參與正式社交，但因過度在意他人評價而感到極度消耗 。</p>
+                    <ul style="font-size: 0.9rem; color: var(--muted); padding-left: 1.2rem; margin-top: 1rem;">
+                        <li>社交前會進行高度、甚至過度的準備</li>
+                        <li>深受身邊朋友「被炎上」等負面社交經驗影響 </li>
+                        <li>在大型活動中感到「隨波逐流」，難以獲得能量 </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>03. Point of View (觀點陳述)</h2>
+            <div class="highlight-box">
+                <p><strong>我們發現：</strong>Tina 因為極度在意他人評價，導致正式社交對她而言是極大的消耗，卻沒有帶來相對的意義感。</p>
+                <p><strong>真正的需求：</strong>比起單純獲得履歷上的加分，她更渴望透過<strong>深度交流與連結</strong>來獲得能量，但這卻受限於她目前的不自信。</p>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--muted); font-style: italic;">本專案後續聚焦於如何將「正式社交」的規模縮小，轉化為可深度對話的管道，以滿足其對意義感的追求 。</p>
+        </section>
+
+        <section class="content-section">
+            <h2>04. Iteration & Learning</h2>
+            <p>在設計思考的過程中，我們意識到<strong>「將研究假設誤認為事實」</strong>是最大的風險。透過持續的測試與原型迭代（Step 0-4），我們學會如何處理抽象的需求，並根據使用者回饋靈活調整設計方向 。</p>
+        </section>
+
+        <div style="height: 5rem;"></div>
+    </div>
+</body>
+</html>
