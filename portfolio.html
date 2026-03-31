@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,244 +9,291 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg: #F7F5F2;
-    --ink: #1A1714;
-    --muted: #8A857E;
-    --accent: #C4563A;
-    --line: #DDD9D3;
-    --card: #EFECEA;
-    --serif: 'DM Serif Display', 'Noto Serif TC', serif;
-    --sans: 'DM Sans', sans-serif;
-  }
+/* =========================================
+   COLOUR PALETTE (Based on image_0.png)
+   ========================================= */
+:root {
+  /* Core Brand Colors */
+  --ink: #242D35;            /* Freinacht Black - Main Text & Nav */
+  --accent: #FE5000;         /* Aerospace Orange - CTAs & Highlights */
+  
+  /* Neutral Backgrounds & Layers */
+  --bg-main: #FBFBFA;         /* Adjusted Glacial Ice for main background */
+  --bg-card: #EBEAE8;         /* Glacial Ice - Project Cards */
+  --bg-dark: #A2AAAD;         /* Pale Slate - Dark section (Contact) */
+  --bg-dark-ink: #202830;    /* Darker Nav on scroll */
+  
+  /* Subtle Accents & Lines */
+  --muted: #7D8166;          /* Flax Smoke - Secondary text, labels */
+  --muted-light: #A2AAAD;    /* Pale Slate - Borders, Lines */
+  --accent-soft: #BCDD0D3;   /* Windy - Subdued background highlights */
+  
+  /* Fonts */
+  --serif: 'DM Serif Display', 'Noto Serif TC', serif;
+  --sans: 'DM Sans', sans-serif;
+}
 
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-weight: 300;
-    overflow-x: hidden;
-  }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-main);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.5rem 4rem;
-    background: rgba(247,245,242,0.88);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s;
-  }
-  nav.scrolled { border-color: var(--line); }
-  .nav-logo {
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    color: var(--ink);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-  }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--muted); text-decoration: none; transition: color 0.2s;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; bottom: -3px; left: 0;
-    width: 0; height: 1px; background: var(--accent);
-    transition: width 0.3s ease;
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-links a:hover::after { width: 100%; }
+/* =========================================
+   1. NAV & GLOBAL
+   ========================================= */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.5rem 4rem;
+  background: rgba(251, 251, 250, 0.92); /* Glassmorphism on main bg */
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+nav.scrolled {
+  background: rgba(36, 45, 53, 0.96); /* Switches to Freinacht Black on scroll */
+  border-color: rgba(162, 170, 173, 0.2);
+}
+nav.scrolled .nav-logo, nav.scrolled .nav-links a {
+  color: var(--bg-main);
+}
+nav.scrolled .nav-links a:hover {
+  color: var(--accent);
+}
 
-  /* HERO */
-  #hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 8rem 4rem 4rem;
-    gap: 4rem;
-  }
-  .hero-text { max-width: 540px; }
-  .hero-tag {
-    display: inline-block;
-    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 1.5rem;
-    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
-  }
-  .hero-name {
-    font-family: var(--serif);
-    font-size: clamp(3.2rem, 5.5vw, 5.2rem);
-    line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 1.2rem;
-    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
-  }
-  .hero-name em { font-style: italic; color: var(--accent); }
-  .hero-desc {
-    font-size: 1rem; line-height: 1.85; color: var(--muted);
-    max-width: 400px; margin-bottom: 2.5rem;
-    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
-  }
-  .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
-  }
-  .btn {
-    display: inline-block; padding: 0.85rem 2rem;
-    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
-    text-decoration: none; transition: all 0.25s; cursor: pointer;
-    border: none; font-family: var(--sans);
-  }
-  .btn-primary { background: var(--ink); color: var(--bg); }
-  .btn-primary:hover { background: var(--accent); }
-  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
-  .btn-ghost:hover { background: var(--ink); color: var(--bg); }
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0;
+  width: 0; height: 1px; background: var(--accent);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
 
-  .hero-visual {
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; animation: fadeIn 1.4s 0.5s forwards;
-  }
-  .hero-diagram { width: 100%; max-width: 400px; }
+/* =========================================
+   2. HERO
+   ========================================= */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 8rem 4rem 4rem;
+  gap: 4rem;
+  background-color: var(--bg-main);
+}
+.hero-text { max-width: 540px; }
+.hero-tag {
+  display: inline-block;
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.5rem;
+  opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(3.2rem, 5.5vw, 5.2rem);
+  line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 1.2rem;
+  opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+  color: var(--ink);
+}
+.hero-name em { font-style: italic; color: var(--muted); } /* Emphasize with Flax Smoke */
+.hero-desc {
+  font-size: 1rem; line-height: 1.85; color: var(--muted);
+  max-width: 400px; margin-bottom: 2.5rem;
+  opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-cta {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+}
+.btn {
+  display: inline-block; padding: 0.85rem 2rem;
+  font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.25s; cursor: pointer;
+  border: none; font-family: var(--sans);
+}
+.btn-primary { background: var(--accent); color: white; } /* Using Aerospace Orange for main CTA */
+.btn-primary:hover { background: var(--ink); color: white; }
+.btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: white; }
 
-  /* SECTIONS */
-  section { padding: 6rem 4rem; }
-  .section-header {
-    display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3.5rem;
-  }
-  .section-num { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--accent); }
-  .section-title { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.1; }
-  .section-line { flex: 1; height: 1px; background: var(--line); margin-left: 1rem; }
+.hero-visual {
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; animation: fadeIn 1.4s 0.5s forwards;
+}
+.hero-diagram { width: 100%; max-width: 400px; }
 
-  /* ABOUT */
-  #about { background: var(--bg); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-  .about-text p { font-size: 1rem; line-height: 1.9; color: var(--muted); margin-bottom: 1.2rem; }
-  .about-text p strong { color: var(--ink); font-weight: 500; }
-  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .stat-item { border-top: 1px solid var(--line); padding-top: 1.2rem; }
-  .stat-num { font-family: var(--serif); font-size: 2.8rem; line-height: 1; margin-bottom: 0.3rem; }
-  .stat-num span { color: var(--accent); }
-  .stat-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+/* =========================================
+   3. SECTIONS & COMMON
+   ========================================= */
+section { padding: 6rem 4rem; }
+.section-header {
+  display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3.5rem;
+}
+.section-num { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--accent); }
+.section-title { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.1; color: var(--ink); }
+.section-line { flex: 1; height: 1px; background: var(--muted-light); margin-left: 1rem; }
 
-  /* WORK */
-  #work { background: var(--card); }
-  .projects-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 1.5px; background: var(--line); border: 1px solid var(--line);
-  }
-  .project-card {
-    background: var(--bg); padding: 2.5rem;
-    position: relative; overflow: hidden; cursor: pointer;
-    transition: background 0.3s;
-  }
-  .project-card::before {
-    content: ''; position: absolute; bottom: 0; left: 0;
-    width: 100%; height: 2px; background: var(--accent);
-    transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
-  }
-  .project-card:hover { background: var(--card); }
-  .project-card:hover::before { transform: scaleX(1); }
-  .project-tag { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-  .project-title { font-family: var(--serif); font-size: 1.35rem; line-height: 1.2; margin-bottom: 0.8rem; }
-  .project-desc { font-size: 0.85rem; line-height: 1.75; color: var(--muted); margin-bottom: 1.5rem; }
-  .project-meta { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-  .tag {
-    font-size: 0.62rem; letter-spacing: 0.08em; padding: 0.22rem 0.55rem;
-    border: 1px solid var(--line); color: var(--muted); text-transform: uppercase;
-  }
-  .project-arrow {
-    position: absolute; top: 2.5rem; right: 2.5rem;
-    font-size: 1.1rem; color: var(--muted);
-    transition: all 0.3s; opacity: 0;
-  }
-  .project-card:hover .project-arrow { opacity: 1; transform: translate(3px,-3px); color: var(--accent); }
+/* =========================================
+   4. ABOUT
+   ========================================= */
+#about { background: var(--bg-main); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.about-text p { font-size: 1rem; line-height: 1.9; color: var(--muted); margin-bottom: 1.2rem; }
+.about-text p strong { color: var(--ink); font-weight: 500; }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.stat-item { border-top: 1px solid var(--muted-light); padding-top: 1.2rem; }
+.stat-num { font-family: var(--serif); font-size: 2.8rem; line-height: 1; margin-bottom: 0.3rem; color: var(--ink); }
+.stat-num span { color: var(--accent); }
+.stat-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 
-  /* SKILLS */
-  #skills { background: var(--bg); }
-  .skills-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: start; }
-  .skills-intro { font-size: 0.95rem; line-height: 1.85; color: var(--muted); position: sticky; top: 8rem; }
-  .skills-groups { display: flex; flex-direction: column; gap: 3rem; }
-  .skill-group-title { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
-  .skill-bars { display: flex; flex-direction: column; gap: 1.1rem; }
-  .skill-item { display: flex; flex-direction: column; gap: 0.5rem; }
-  .skill-label { display: flex; justify-content: space-between; font-size: 0.85rem; }
-  .skill-label span:last-child { color: var(--muted); font-size: 0.72rem; }
-  .skill-track { height: 1px; background: var(--line); position: relative; }
-  .skill-fill {
-    position: absolute; top: -1px; left: 0;
-    height: 3px; background: var(--ink);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 1s cubic-bezier(0.4,0,0.2,1);
-  }
-  .skill-fill.animated { transform: scaleX(1); }
+/* =========================================
+   5. WORK
+   ========================================= */
+#work { background: var(--bg-card); } /* Background set to Glacial Ice */
+.projects-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px; background: var(--muted-light); border: 1px solid var(--muted-light);
+}
+.project-card {
+  background: var(--bg-main); padding: 2.5rem;
+  position: relative; overflow: hidden; cursor: pointer;
+  transition: background 0.3s;
+}
+.project-card::before {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 2px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+}
+.project-card:hover { background: var(--bg-card); }
+.project-card:hover::before { transform: scaleX(1); }
+.project-tag { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+.project-title { font-family: var(--serif); font-size: 1.35rem; line-height: 1.2; margin-bottom: 0.8rem; color: var(--ink); }
+.project-desc { font-size: 0.85rem; line-height: 1.75; color: var(--muted); margin-bottom: 1.5rem; }
+.project-meta { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.tag {
+  font-size: 0.62rem; letter-spacing: 0.08em; padding: 0.22rem 0.55rem;
+  border: 1px solid var(--muted-light); color: var(--muted); text-transform: uppercase;
+}
+.project-arrow {
+  position: absolute; top: 2.5rem; right: 2.5rem;
+  font-size: 1.1rem; color: var(--muted-light);
+  transition: all 0.3s; opacity: 0;
+}
+.project-card:hover .project-arrow { opacity: 1; transform: translate(3px,-3px); color: var(--accent); }
 
-  /* CONTACT */
-  #contact { background: var(--ink); color: var(--bg); min-height: 60vh; display: flex; flex-direction: column; justify-content: center; }
-  #contact .section-num { color: var(--accent); }
-  #contact .section-title { color: var(--bg); }
-  #contact .section-line { background: rgba(255,255,255,0.1); }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-  .contact-tagline { font-family: var(--serif); font-size: clamp(1.8rem, 2.8vw, 2.4rem); line-height: 1.2; margin-bottom: 1.5rem; }
-  .contact-tagline em { color: var(--accent); font-style: italic; }
-  .contact-sub { font-size: 0.95rem; line-height: 1.85; color: rgba(247,245,242,0.45); margin-bottom: 2.5rem; }
-  .contact-links { display: flex; flex-direction: column; }
-  .contact-link {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 0; border-top: 1px solid rgba(255,255,255,0.1);
-    text-decoration: none; color: var(--bg); transition: color 0.2s; font-size: 0.9rem;
-  }
-  .contact-link:hover { color: var(--accent); }
-  .contact-link span:last-child { font-size: 0.72rem; color: rgba(247,245,242,0.28); }
+/* =========================================
+   6. SKILLS
+   ========================================= */
+#skills { background: var(--bg-main); }
+.skills-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: start; }
+.skills-intro { font-size: 0.95rem; line-height: 1.85; color: var(--muted); position: sticky; top: 8rem; }
+.skills-groups { display: flex; flex-direction: column; gap: 3rem; }
+.skill-group-title { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+.skill-bars { display: flex; flex-direction: column; gap: 1.1rem; }
+.skill-item { display: flex; flex-direction: column; gap: 0.5rem; }
+.skill-label { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--ink); }
+.skill-label span:last-child { color: var(--muted); font-size: 0.72rem; }
+.skill-track { height: 1px; background: var(--muted-light); position: relative; }
+.skill-fill {
+  position: absolute; top: -1px; left: 0;
+  height: 3px; background: var(--accent); /* Orange fill on skill bars */
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 1s cubic-bezier(0.4,0,0.2,1);
+}
+.skill-fill.animated { transform: scaleX(1); }
 
-  /* FOOTER */
-  footer {
-    background: var(--ink); border-top: 1px solid rgba(255,255,255,0.07);
-    padding: 2rem 4rem;
-    display: flex; justify-content: space-between; align-items: center;
-    color: rgba(247,245,242,0.25); font-size: 0.72rem; letter-spacing: 0.08em;
-  }
+/* =========================================
+   7. CONTACT
+   ========================================= */
+#contact { background: var(--ink); color: var(--bg-main); min-height: 60vh; display: flex; flex-direction: column; justify-content: center; } /* freinhacht Black background */
+#contact .section-num { color: var(--accent); }
+#contact .section-title { color: var(--bg-main); }
+#contact .section-line { background: rgba(251,251,250,0.1); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.contact-tagline { font-family: var(--serif); font-size: clamp(1.8rem, 2.8vw, 2.4rem); line-height: 1.2; margin-bottom: 1.5rem; color: var(--bg-main); }
+.contact-tagline em { color: var(--accent); font-style: italic; }
+.contact-sub { font-size: 0.95rem; line-height: 1.85; color: rgba(251,251,250,0.6); margin-bottom: 2.5rem; }
+.contact-links { display: flex; flex-direction: column; }
+.contact-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 0; border-top: 1px solid rgba(251,251,250,0.1);
+  text-decoration: none; color: var(--bg-main); transition: color 0.2s; font-size: 0.9rem;
+}
+.contact-link:hover { color: var(--accent); }
+.contact-link span:last-child { font-size: 0.72rem; color: rgba(251,251,250,0.3); }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-  .reveal {
-    opacity: 0; transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+/* =========================================
+   8. FOOTER
+   ========================================= */
+footer {
+  background: var(--ink); border-top: 1px solid rgba(251,251,250,0.07);
+  padding: 2rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  color: rgba(251,251,250,0.4); font-size: 0.72rem; letter-spacing: 0.08em;
+}
 
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    nav { padding: 1.2rem 1.5rem; }
-    #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
-    .hero-visual { display: none; }
-    section { padding: 4rem 1.5rem; }
-    .about-grid, .skills-layout, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .about-stats { grid-template-columns: repeat(2,1fr); }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
-    .nav-links { gap: 1.2rem; }
-    .skills-intro { position: static; }
-  }
+/* =========================================
+   9. ANIMATIONS
+   ========================================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* =========================================
+   10. RESPONSIVE
+   ========================================= */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 1.5rem; }
+  nav.scrolled { background: var(--bg-dark-ink); }
+  #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+  .hero-visual { display: none; }
+  section { padding: 4rem 1.5rem; }
+  .about-grid, .skills-layout, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: repeat(2,1fr); }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+  .nav-links { gap: 1.2rem; }
+  .skills-intro { position: static; }
+}
 </style>
 </head>
 <body>
 
 <nav id="nav">
-  <a href="#hero" class="nav-logo">Chen Yu — Portfolio</a>
+  <a href="#hero" class="nav-logo">Kuan Yu — Portfolio</a>
   <ul class="nav-links">
-    <li><a href="#about">關於</a></li>
-    <li><a href="#work">作品</a></li>
-    <li><a href="#skills">技能</a></li>
-    <li><a href="#contact">聯絡</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
@@ -260,12 +307,12 @@
       Experiences
     </h1>
     <p class="hero-desc">
-      透過研究驅動的設計方法，打造以人為本的數位體驗。
-      專注於 HCI 研究、互動設計與可用性測試。
+      Research-driven design for human-centred digital experiences.
+      Specialising in HCI research, interaction design, and usability evaluation.
     </p>
     <div class="hero-cta">
-      <a href="#work" class="btn btn-primary">查看作品</a>
-      <a href="#contact" class="btn btn-ghost">聯絡我</a>
+      <a href="#work" class="btn btn-primary">View Work</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
     </div>
   </div>
   <div class="hero-visual">
@@ -276,8 +323,8 @@
             .orb { fill: none; stroke: #DDD9D3; stroke-width: 1; }
             .otext { font-family: 'DM Sans',sans-serif; font-size: 9.5px; fill: #8A857E; letter-spacing: 3.5px; text-transform: uppercase; }
           </style>
-          <animateTransform attributeName="transform"/>
         </defs>
+        
         <g style="transform-origin:210px 210px">
           <animateTransform attributeName="transform" type="rotate" from="0 210 210" to="360 210 210" dur="80s" repeatCount="indefinite"/>
           <circle cx="210" cy="210" r="185" class="orb"/>
@@ -290,6 +337,7 @@
           <circle cx="340" cy="80"  r="2.5" fill="#8A857E"/>
           <circle cx="80"  cy="340" r="3" fill="#C4563A" opacity="0.4"/>
         </g>
+        
         <g style="transform-origin:210px 210px">
           <animateTransform attributeName="transform" type="rotate" from="0 210 210" to="-360 210 210" dur="50s" repeatCount="indefinite"/>
           <circle cx="210" cy="210" r="130" class="orb"/>
@@ -300,16 +348,16 @@
           <circle cx="210" cy="80"  r="3" fill="#8A857E"/>
           <circle cx="210" cy="340" r="2.5" fill="#C4563A" opacity="0.5"/>
         </g>
-        <!-- Inner static ring -->
+        
         <circle cx="210" cy="210" r="75" class="orb"/>
-        <!-- Cross lines -->
+        
         <line x1="25" y1="210" x2="395" y2="210" stroke="#DDD9D3" stroke-width="0.5"/>
         <line x1="210" y1="25" x2="210" y2="395" stroke="#DDD9D3" stroke-width="0.5"/>
-        <!-- Center -->
+        
         <circle cx="210" cy="210" r="52" fill="#F7F5F2" stroke="#DDD9D3" stroke-width="1"/>
         <text x="210" y="206" text-anchor="middle" font-family="'DM Serif Display',serif" font-size="18" fill="#1A1714">Human</text>
         <text x="210" y="227" text-anchor="middle" font-family="'DM Serif Display',serif" font-size="18" fill="#C4563A" font-style="italic">Centred</text>
-        <!-- Corner marks -->
+        
         <line x1="25"  y1="25"  x2="52"  y2="25"  stroke="#DDD9D3" stroke-width="1"/>
         <line x1="25"  y1="25"  x2="25"  y2="52"  stroke="#DDD9D3" stroke-width="1"/>
         <line x1="395" y1="25"  x2="368" y2="25"  stroke="#DDD9D3" stroke-width="1"/>
@@ -327,31 +375,31 @@
 <section id="about">
   <div class="section-header reveal">
     <span class="section-num">01</span>
-    <h2 class="section-title">關於我</h2>
+    <h2 class="section-title">About Me</h2>
     <div class="section-line"></div>
   </div>
   <div class="about-grid">
     <div class="about-text reveal">
-      <p>我是一位專注於 <strong>UX/UI 設計</strong>與 <strong>人機互動（HCI）研究</strong>的設計師，相信好的設計始於深度理解使用者的需求與行為模式。</p>
-      <p>我的工作跨越學術研究與商業實踐，從質性訪談、可用性測試到高保真原型設計，每個環節都以資料為基礎，以人為核心。</p>
-      <p>目前關注領域包括：<strong>無障礙設計</strong>、<strong>互動認知負荷</strong>以及 AI 輔助設計流程，致力於讓複雜的系統對每位使用者更加直覺易用。</p>
+      <p>I'm a psychologist specializing in <strong>Cognitive Science</strong> and <strong>Human-Computer Interaction (HCI) research</strong>, with a deep belief that great design begins with a thorough understanding of users' needs and behaviours.</p>
+      <p>My work spans academic research and commercial practice — from qualitative interviews and usability testing to high-fidelity prototyping — always grounded in data and centred on people.</p>
+      <p>Current areas of focus: <strong>affective computing</strong>, <strong>cognitive load in interaction</strong>, and AI-assisted design workflows — working to make complex systems feel intuitive for every user.</p>
     </div>
     <div class="about-stats reveal">
       <div class="stat-item">
         <div class="stat-num">12<span>+</span></div>
-        <div class="stat-label">完成專案</div>
+        <div class="stat-label">Projects Delivered</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">3<span>+</span></div>
-        <div class="stat-label">年研究經驗</div>
+        <div class="stat-label">Years of Research</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">5<span></span></div>
-        <div class="stat-label">學術發表</div>
+        <div class="stat-label">Academic Publications</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">200<span>+</span></div>
-        <div class="stat-label">使用者訪談</div>
+        <div class="stat-label">User Interviews</div>
       </div>
     </div>
   </div>
@@ -361,76 +409,82 @@
 <section id="work">
   <div class="section-header reveal">
     <span class="section-num">02</span>
-    <h2 class="section-title">精選作品</h2>
+    <h2 class="section-title">Selected Work</h2>
     <div class="section-line"></div>
   </div>
   <div class="projects-grid reveal">
-    <div class="project-card">
+    
+    <a href="project-gratitude.html" class="project-card" style="text-decoration: none;">
       <span class="project-arrow">↗</span>
-      <div class="project-tag">HCI Research · 2024</div>
-      <h3 class="project-title">銀髮族數位銀行<br>可用性研究</h3>
-      <p class="project-desc">針對 65 歲以上使用者進行深度訪談與認知走查，重新設計行動銀行 APP 介面，降低任務錯誤率 42%。</p>
+      <div class="project-tag">HCI Research · 2024–2025</div>
+      <h3 class="project-title">AI Gratitude Diary<br>Influence on Effort and Emotion</h3>
+      <p class="project-desc">Investigated how AI interfaces reshaped emotional expression, revealing that chatbot UX produces more individualized rather than relational gratitude.</p>
       <div class="project-meta">
-        <span class="tag">User Research</span>
-        <span class="tag">Usability</span>
+        <span class="tag">LLM Interaction</span>
+        <span class="tag">Behavioral Coding</span>
+        <span class="tag">UXR</span>
+      </div>
+    </a>
+
+    <a href="project-watch.html" class="project-card" style="text-decoration: none;">
+      <span class="project-arrow">↗</span>
+      <div class="project-tag">Interactive System · In Progress</div>
+      <h3 class="project-title">Wearable-Mediated<br>Conflict Resolution</h3>
+      <p class="project-desc">Designing a physiological wearable system that detects real-time stress signals to de-escalate intergenerational communication conflicts.</p>
+      <div class="project-meta">
+        <span class="tag">Wearables</span>
+        <span class="tag">Physiology</span>
+        <span class="tag">Conflict Res</span>
+      </div>
+    </a>
+
+    <a href="project-rural.html" class="project-card" style="text-decoration: none;">
+      <span class="project-arrow">↗</span>
+      <div class="project-tag">Product Design · 2025</div>
+      <h3 class="project-title">Educational App for<br>Rural Connectivity</h3>
+      <p class="project-desc">Led UI design and feature scoping for a collaborative app tailored to the cognitive needs of children in limited-connectivity rural contexts.</p>
+      <div class="project-meta">
+        <span class="tag">UX/UI</span>
+        <span class="tag">Rural Education</span>
         <span class="tag">Figma</span>
       </div>
-    </div>
-    <div class="project-card">
+    </a>
+
+    <a href="project-pebbling.html" class="project-card" style="text-decoration: none;">
       <span class="project-arrow">↗</span>
-      <div class="project-tag">Product Design · 2024</div>
-      <h3 class="project-title">遠端醫療<br>互動系統設計</h3>
-      <p class="project-desc">為慢性病患者設計遠端問診平台，整合生理數據視覺化與醫病溝通介面，完成從 0 到 1 的完整設計系統。</p>
+      <div class="project-tag">Behavioral Study · In Progress</div>
+      <h3 class="project-title">Pebbling Behavior:<br>Digital Affection Dynamics</h3>
+      <p class="project-desc">Investigating the psychological motivations behind "pebbling"—sharing small digital objects—as a modern form of relational affection.</p>
       <div class="project-meta">
-        <span class="tag">Service Design</span>
+        <span class="tag">Qualitative Research</span>
+        <span class="tag">Social Psych</span>
+      </div>
+    </a>
+
+    <a href="project-anxiety.html" class="project-card" style="text-decoration: none;">
+      <span class="project-arrow">↗</span>
+      <div class="project-tag">UX Research · In Progress</div>
+      <h3 class="project-title">Design Thinking for<br>Social Anxiety UX</h3>
+      <p class="project-desc">Applying a full design thinking cycle to redesign digital social experiences specifically for users experiencing social anxiety.</p>
+      <div class="project-meta">
+        <span class="tag">Design Thinking</span>
+        <span class="tag">Empathy Mapping</span>
         <span class="tag">Prototyping</span>
-        <span class="tag">Accessibility</span>
       </div>
-    </div>
-    <div class="project-card">
+    </a>
+
+    <a href="project-data.html" class="project-card" style="text-decoration: none;">
       <span class="project-arrow">↗</span>
-      <div class="project-tag">Research · 2023</div>
-      <h3 class="project-title">AI 寫作輔助工具<br>認知負荷研究</h3>
-      <p class="project-desc">以眼動追蹤與 NASA-TLX 量表探討 AI 建議介面對寫作者認知負荷的影響，研究成果發表於 CHI 2024。</p>
+      <div class="project-tag">Data Science · 2025</div>
+      <h3 class="project-title">Data-Driven Marketing<br>& RFM Segmenting</h3>
+      <p class="project-desc">Analyzed 10,000+ records using RFM and SPSS to identify customer segments and develop strategic proposals for industry stakeholders.</p>
       <div class="project-meta">
-        <span class="tag">Eye Tracking</span>
-        <span class="tag">CHI</span>
-        <span class="tag">Mixed Methods</span>
+        <span class="tag">SPSS</span>
+        <span class="tag">RFM Analysis</span>
+        <span class="tag">Statistics</span>
       </div>
-    </div>
-    <div class="project-card">
-      <span class="project-arrow">↗</span>
-      <div class="project-tag">UI Design · 2023</div>
-      <h3 class="project-title">教育科技平台<br>學習儀表板</h3>
-      <p class="project-desc">重新設計線上學習平台的學習進度追蹤儀表板，透過資訊視覺化讓學習者更容易掌握自身狀態。</p>
-      <div class="project-meta">
-        <span class="tag">Data Viz</span>
-        <span class="tag">UI Design</span>
-        <span class="tag">EdTech</span>
-      </div>
-    </div>
-    <div class="project-card">
-      <span class="project-arrow">↗</span>
-      <div class="project-tag">Design System · 2023</div>
-      <h3 class="project-title">無障礙設計系統<br>建立與推動</h3>
-      <p class="project-desc">為新創公司建立符合 WCAG 2.1 AA 標準的設計系統，涵蓋 Component Library、Design Token 與使用指南。</p>
-      <div class="project-meta">
-        <span class="tag">Design System</span>
-        <span class="tag">WCAG</span>
-        <span class="tag">Storybook</span>
-      </div>
-    </div>
-    <div class="project-card">
-      <span class="project-arrow">↗</span>
-      <div class="project-tag">Research · 2022</div>
-      <h3 class="project-title">社群媒體使用者<br>行為質性研究</h3>
-      <p class="project-desc">透過日記研究法與脈絡訪查，深度探索 Z 世代在多平台情境下的資訊尋求行為模式。</p>
-      <div class="project-meta">
-        <span class="tag">Diary Study</span>
-        <span class="tag">Contextual Inquiry</span>
-        <span class="tag">Affinity Map</span>
-      </div>
-    </div>
+    </a>
+
   </div>
 </section>
 
@@ -438,68 +492,68 @@
 <section id="skills">
   <div class="section-header reveal">
     <span class="section-num">03</span>
-    <h2 class="section-title">專業技能</h2>
+    <h2 class="section-title">Skills</h2>
     <div class="section-line"></div>
   </div>
   <div class="skills-layout">
     <div class="skills-intro reveal">
-      <p>結合研究方法論與設計實踐，以科學的嚴謹度打造直覺的體驗。</p>
+      <p>Bridging <strong>Cognitive Psychology</strong> and <strong>HCI</strong> to create evidence-based interactive systems.</p>
       <br>
-      <p style="color:var(--muted);font-size:0.85rem;line-height:1.85">從問題定義、使用者研究、概念發想，到原型製作與評估，貫穿完整的 HCD 設計流程。</p>
+      <p style="color:var(--muted);font-size:0.85rem;line-height:1.85">
+        Proficient in full-cycle research—from behavioral coding and experimental design to high-fidelity prototyping and cross-cultural analysis.
+      </p>
     </div>
     <div class="skills-groups reveal">
       <div>
-        <div class="skill-group-title">研究方法</div>
+        <div class="skill-group-title">Research & Analysis</div>
         <div class="skill-bars">
           <div class="skill-item">
-            <div class="skill-label"><span>使用者訪談 · User Interview</span><span>Expert</span></div>
+            <div class="skill-label"><span>Qualitative (Behavioral Coding, Field Research)</span><span>Advanced</span></div>
             <div class="skill-track"><div class="skill-fill" style="width:95%"></div></div>
           </div>
           <div class="skill-item">
-            <div class="skill-label"><span>可用性測試 · Usability Testing</span><span>Expert</span></div>
+            <div class="skill-label"><span>Quantitative (Experimental Design, Statistics)</span><span>Advanced</span></div>
             <div class="skill-track"><div class="skill-fill" style="width:92%"></div></div>
           </div>
           <div class="skill-item">
-            <div class="skill-label"><span>問卷設計與統計分析</span><span>Advanced</span></div>
-            <div class="skill-track"><div class="skill-fill" style="width:80%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label"><span>眼動追蹤 · Eye Tracking</span><span>Advanced</span></div>
-            <div class="skill-track"><div class="skill-fill" style="width:75%"></div></div>
+            <div class="skill-label"><span>User Insight & Cross-cultural Analysis</span><span>Advanced</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:88%"></div></div>
           </div>
         </div>
       </div>
+
       <div>
-        <div class="skill-group-title">設計工具</div>
+        <div class="skill-group-title">Design & Tools</div>
         <div class="skill-bars">
           <div class="skill-item">
-            <div class="skill-label"><span>Figma</span><span>Expert</span></div>
-            <div class="skill-track"><div class="skill-fill" style="width:97%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label"><span>Protopie / Framer</span><span>Advanced</span></div>
-            <div class="skill-track"><div class="skill-fill" style="width:82%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label"><span>Miro / FigJam</span><span>Expert</span></div>
+            <div class="skill-label"><span>Figma & Adobe Illustrator</span><span>Expert</span></div>
             <div class="skill-track"><div class="skill-fill" style="width:90%"></div></div>
           </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>Design Thinking & UX Prototyping</span><span>Expert</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:94%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>R, SPSS, Python (Data Science)</span><span>Proficient</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:85%"></div></div>
+          </div>
         </div>
       </div>
+
       <div>
-        <div class="skill-group-title">技術能力</div>
+        <div class="skill-group-title">Technical & Engineering</div>
         <div class="skill-bars">
           <div class="skill-item">
-            <div class="skill-label"><span>HTML / CSS</span><span>Intermediate</span></div>
-            <div class="skill-track"><div class="skill-fill" style="width:68%"></div></div>
+            <div class="skill-label"><span>Unity & OpenCV</span><span>Intermediate</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:70%"></div></div>
           </div>
           <div class="skill-item">
-            <div class="skill-label"><span>Python (資料分析)</span><span>Intermediate</span></div>
-            <div class="skill-track"><div class="skill-fill" style="width:65%"></div></div>
+            <div class="skill-label"><span>HTML/CSS & Git</span><span>Intermediate</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:75%"></div></div>
           </div>
           <div class="skill-item">
-            <div class="skill-label"><span>R (統計分析)</span><span>Advanced</span></div>
-            <div class="skill-track"><div class="skill-fill" style="width:78%"></div></div>
+            <div class="skill-label"><span>Languages: English (B2+), German (Int.)</span><span>Proficient</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:82%"></div></div>
           </div>
         </div>
       </div>
@@ -511,59 +565,68 @@
 <section id="contact">
   <div class="section-header reveal">
     <span class="section-num">04</span>
-    <h2 class="section-title">聯絡我</h2>
+    <h2 class="section-title">Contact</h2>
     <div class="section-line"></div>
   </div>
   <div class="contact-grid">
     <div class="reveal">
       <h3 class="contact-tagline">
-        一起創造<br>
-        更好的<em>使用體驗</em>
+        Let's create<br>
+        better <em>human experiences</em>
       </h3>
-      <p class="contact-sub">無論是設計合作、學術研究，或只是想聊聊 HCI 的最新進展，我都很樂意交流。</p>
-      <a href="mailto:hello@chenyu.design" class="btn btn-primary">發送郵件 →</a>
+      <p class="contact-sub">Whether it's a design collaboration, academic exchange, or just a conversation about the latest in HCI — I'd love to connect.</p>
+      <a href="mailto:carol921011@gmail.com" class="btn btn-primary">Send a Message →</a>
     </div>
     <div class="contact-links reveal">
-      <a href="mailto:hello@chenyu.design" class="contact-link">
-        <span>hello@chenyu.design</span><span>Email</span>
+      <a href="mailto:carol921011@gmail.com" class="contact-link">
+        <span>carol921011@gmail.com</span><span>Email</span>
       </a>
-      <a href="#" class="contact-link">
-        <span>linkedin.com/in/chenyu</span><span>LinkedIn</span>
+      
+      <a href="https://linkedin.com/in/your-profile" target="_blank" class="contact-link">
+        <span>linkedin.com/in/karolin-lin</span><span>LinkedIn</span>
       </a>
-      <a href="#" class="contact-link">
-        <span>github.com/chenyu</span><span>GitHub</span>
+      
+      <a href="https://github.com/your-username" target="_blank" class="contact-link">
+        <span>github.com/karolin-lin</span><span>GitHub</span>
       </a>
-      <a href="#" class="contact-link">
-        <span>Chen Yu — CV 下載</span><span>PDF</span>
+      
+      <a href="CV_KarolinLin.pdf" download class="contact-link" style="border-bottom: 1px solid rgba(251,251,250,0.1);">
+        <span style="color:var(--accent); font-weight:500;">Download Curriculum Vitae</span><span>PDF</span>
       </a>
-    </div>
+</div>
   </div>
 </section>
 
 <footer>
-  <span>© 2025 Chen Yu. All rights reserved.</span>
+  <span>© 2026 Kuan Yu. All rights reserved.</span>
   <span>Designed with intention.</span>
 </footer>
 
 <script>
+  // 導覽列捲動效果
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 20);
   });
 
+  // 區塊顯現動畫 (Reveal)
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.1 });
   reveals.forEach(el => obs.observe(el));
 
-  const fills = document.querySelectorAll('.skill-fill');
+  // 技能條動畫 (Skill Bars)
+  const skillSection = document.getElementById('skills');
+  const skillFills = document.querySelectorAll('.skill-fill');
   const skillObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('animated'), 250); });
-  }, { threshold: 0.4 });
-  fills.forEach(el => skillObs.observe(el));
+    if (entries[0].isIntersecting) {
+      skillFills.forEach(fill => fill.classList.add('animated'));
+    }
+  }, { threshold: 0.2 });
+  if (skillSection) skillObs.observe(skillSection);
 </script>
-</body>
-</html>
