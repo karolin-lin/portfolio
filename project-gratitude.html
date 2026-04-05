@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Gratitude Diary — Project Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --ink: #242D35; 
+            --accent: #FE5000; 
+            --bg: #FBFBFA; 
+            --muted: #7D8166; 
+            --serif: 'DM Serif Display', serif; 
+            --sans: 'DM Sans', sans-serif; 
+        }
+
+        body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.8; margin: 0; }
+        .container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem; }
+        
+        /* 導航 */
+        .back-btn { display: inline-block; margin-bottom: 2rem; color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; }
+        .back-btn:hover { color: var(--accent); }
+        
+        h1 { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 2rem; }
+        
+        .tag-row { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .tag { border: 1px solid #A2AAAD; padding: 0.3rem 0.8rem; font-size: 0.7rem; text-transform: uppercase; color: var(--muted); }
+        
+        h2 { font-family: var(--serif); font-size: 1.8rem; margin: 4rem 0 1.5rem; border-bottom: 1px solid #EBEAE8; padding-bottom: 0.5rem; }
+        h3 { font-size: 1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2.5rem; }
+
+        /* 圖片樣式 */
+        .project-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        /* 研究問題區塊 (RQ) */
+        .rq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #EBEAE8;
+            padding: 1.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .card-num {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            color: var(--ink);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .card-content {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* 流程區塊 */
+        .procedure-box {
+            background: #f0f0ef;
+            padding: 2rem;
+            border-radius: 4px;
+            margin: 2rem 0;
+        }
+
+        .procedure-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.9rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .procedure-list li strong { color: var(--ink); display: block; margin-bottom: 0.2rem; }
+
+        /* 響應式 */
+        @media (max-width: 768px) {
+            .rq-grid, .procedure-list { grid-template-columns: 1fr; }
+            .container { padding: 6rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html#work" class="back-btn">← Back to Projects</a>
+        
+        <header>
+            <h1>AI Gratitude Diary: Influence on Effort & Emotion (in press)</h1>
+            <div class="tag-row">
+                <span class="tag">LLM Interaction</span>
+                <span class="tag">Between-Subjects Design</span>
+                <span class="tag">Behavioral Coding</span>
+            </div>
+            <p style="font-style: italic; color: var(--muted); margin-top: 1rem;">
+                本研究探討將生成式 AI (GenAI) 整合進心理健康干預時的「雙面刃」影響，特別聚焦於認知投入與干預成效之間的平衡。
+            </p>
+        </header>
+
+        <section>
+            <h2>Research Questions</h2>
+            <div class="rq-grid">
+                <div class="card">
+                    <span class="card-num">RQ1 · Effort</span>
+                    <span class="card-title">認知投入程度</span>
+                    <p class="card-content">GenAI 如何影響參與者在感恩紀錄中投資的<strong>認知努力 (Cognitive Effort)</strong>？</p>
+                </div>
+                <div class="card">
+                    <span class="card-num">RQ2 · Focus</span>
+                    <span class="card-title">反思深度與焦點</span>
+                    <p class="card-content">AI 是否改變了反思深度以及<strong>自我導向 vs 他人導向</strong>的主題焦點？</p>
+                </div>
+                <div class="card">
+                    <span class="card-num">RQ3 · Efficacy</span>
+                    <span class="card-title">干預成效評估</span>
+                    <p class="card-content">對比傳統問卷組與控制組，AI 輔助紀錄在提升<strong>當下幸福感</strong>的效果差異？</p>
+                </div>
+                <div class="card">
+                    <span class="card-num">RQ4 · Feedback</span>
+                    <span class="card-title">AI 生成回饋</span>
+                    <p class="card-content">接收 AI 自動化總結後，用戶產生的心理衝擊與感知價值為何？</p>
+                </div>
+            </div>
+        </section>
+
+        <img src="image/gratitude-app.png" alt="Experimental Interface" class="project-img">
+
+        <section>
+            <h2>Methodology</h2>
+            <p>本研究採用了具備縱向追蹤性質的 <strong>受試者間實驗設計 (Between-Subjects Experimental Design)</strong>。</p>
+
+            <h3>A. Participants & Groups</h3>
+            <p>共計 <strong>105 位參與者</strong> 被隨機分配至以下三種實驗條件之一：</p>
+            <div class="rq-grid" style="margin-top: 1rem;">
+                <div class="card">
+                    <span class="card-title" style="font-size: 1rem;">Experimental Group A</span>
+                    <p class="card-content"><strong>Chatbot-based:</strong> 透過 AI 聊天機器人完成感恩紀錄。</p>
+                </div>
+                <div class="card">
+                    <span class="card-title" style="font-size: 1rem;">Experimental Group B</span>
+                    <p class="card-content"><strong>Questionnaire-based:</strong> 透過標準數位問卷進行傳統紀錄。</p>
+                </div>
+                <div class="card" style="grid-column: span 1;">
+                    <span class="card-title" style="font-size: 1rem;">Control Group</span>
+                    <p class="card-content"><strong>Daily Event Recording:</strong> 僅記錄每日瑣事的中性任務組。</p>
+                </div>
+            </div>
+
+            <h3>B. Procedure & Duration</h3>
+            <div class="procedure-box">
+                <ul class="procedure-list">
+                    <li><strong>Timeframe</strong> 持續 7 天的連續實驗。</li>
+                    <li><strong>Daily Task</strong> 每日完成指定的書寫任務。</li>
+                    <li><strong>Measurement</strong> 每次紀錄後立即測量投入努力與幸福感。</li>
+                    <li><strong>Post-Intervention</strong> 第 7 天收到由 AI 生成的內容總結回饋。</li>
+                </ul>
+            </div>
+
+            <h3>C. Analytical Approach</h3>
+            <div class="rq-grid">
+                <div>
+                    <strong style="display:block; margin-bottom: 0.5rem;">Quantitative Analysis</strong>
+                    <p class="card-content">比較組間的努力程度與幸福感分數，驗證 <strong>認知卸載理論 (Cognitive Offloading Theory)</strong>。</p>
+                </div>
+                <div>
+                    <strong style="display:block; margin-bottom: 0.5rem;">Qualitative Analysis</strong>
+                    <p class="card-content">分析參與者對 AI 總結的主觀反應，特別是其產生的「啟發感 (Inspiration)」。</p>
+                </div>
+                <div>
+                    <strong style="display:block; margin-bottom: 0.5rem;">Linguistic Analysis</strong>
+                    <p class="card-content">透過行為編碼識別感恩焦點的移轉，如 AI 組中「自我導向」語言的顯著增加。</p>
+                </div>
+            </div>
+        </section>
+
+        <div style="height: 10rem;"></div>
+    </div>
+</body>
+</html>

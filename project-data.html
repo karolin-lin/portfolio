@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Marketing — Project Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --ink: #242D35; --accent: #FE5000; --bg: #FBFBFA; --serif: 'DM Serif Display', serif; --sans: 'DM Sans', sans-serif; --muted: #7D8166; }
+        body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.8; margin: 0; }
+        .container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem; }
+        .back-btn { display: inline-block; margin-bottom: 2rem; color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; }
+        .back-btn:hover { color: var(--accent); }
+        h1 { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 2rem; }
+        .tag-row { display: flex; gap: 1rem; margin-bottom: 3rem; }
+        .tag { border: 1px solid #A2AAAD; padding: 0.3rem 0.8rem; font-size: 0.7rem; text-transform: uppercase; color: var(--muted); }
+        h2 { font-family: var(--serif); font-size: 1.8rem; margin: 3rem 0 1.5rem; border-bottom: 1px solid #EBEAE8; padding-bottom: 0.5rem; }
+        
+        .highlight-box { background: #F4F4F3; padding: 2rem; border-left: 4px solid var(--accent); margin: 2rem 0; }
+        .image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
+        .project-img { width: 100%; height: auto; border-radius: 4px; border: 1px solid #EEE; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .image-caption { font-size: 0.75rem; color: var(--muted); margin-top: 0.8rem; text-align: center; }
+
+        .cluster-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; }
+        .cluster-card { background: #fff; border: 1px solid #EBEAE8; padding: 1.5rem; border-radius: 4px; }
+        .cluster-name { color: var(--accent); font-weight: 600; font-size: 1rem; display: block; margin-bottom: 0.5rem; }
+
+        @media (max-width: 768px) { .image-grid { grid-template-columns: 1fr; } h1 { font-size: 2.5rem; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html#work" class="back-btn">← Back to Overview</a>
+        
+        <header>
+            <h1>Data-Driven Marketing & RFM Segmenting:<br><span style="font-size: 0.6em; color: var(--muted);">超市會員價值評估與精準行銷策略</span></h1>
+            <div class="tag-row">
+                <span class="tag">SPSS</span>
+                <span class="tag">RFM Analysis</span>
+                <span class="tag">K-Means Clustering</span>
+            </div>
+        </header>
+
+        <section class="content-section">
+            <h2>01. Methodology & RFM Optimization</h2>
+            <p>本研究分析 200 位會員共 4,481 筆交易資料 。針對超市中頻消費的特性，我改良了傳統的 <strong>Bob Stone 法</strong>，將權重調整為 Monetary > Frequency > Recency。這能有效識別單次高額消費且穩定來店的客群，避免過早判定顧客流失。</p>
+            
+            <div class="highlight-box">
+                <strong>動態指標導入：</strong><br>
+                除了靜態 RFM，我結合了衡量活躍趨勢的 <strong>CAI (Customer Activity Index)</strong> 與衡量預測穩定度的 <strong>CRI (Customer Reliability Index)</strong> 。研究發現，已婚女性佔比近五成（49.2%），且其 CRI 值（0.719）反映行為高度穩定，是企業的核心營收來源。
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>02. Market Basket Analysis</h2>
+            <p>透過樞紐分析與皮爾森相關係數，我建構了商品共購矩陣。進一步利用 <strong>因素分析 (Factor Analysis)</strong> 將品項歸納為「居家清潔」、「女性生活」等共通購買因子 。這協助企業避免單一品類內的過度折扣，轉向更有情境感的交叉銷售策略。</p>
+
+            <div class="image-grid">
+                <div>
+                    <img src="image/data-CRI.png" alt="CRI Analysis" class="project-img">
+                    <p class="image-caption">Fig 1. CRI 分群與交易穩定度分析 </p>
+                </div>
+                <div>
+                    <img src="image/data-education.png" alt="Education Profit" class="project-img">
+                    <p class="image-caption">Fig 2. 學歷背景與獲利指標之 ANOVA 檢定 </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>03. K-Means Clustering Results</h2>
+            <p>綜合 RFM、CAI 與 CRI 指標，我將顧客區隔為五大族群 ：</p>
+            
+            <div class="cluster-grid">
+                <div class="cluster-card">
+                    <span class="cluster-name">睡美人 (14.04%)</span>
+                    <p style="font-size: 0.85rem;">長期未回購，但 CRI 穩定度高，具激活潛力。</p>
+                </div>
+                <div class="cluster-card">
+                    <span class="cluster-name">高忠生 (14.04%)</span>
+                    <p style="font-size: 0.85rem;">高金額、高頻率、高忠誠，企業最重要的資產。</p>
+                </div>
+                <div class="cluster-card">
+                    <span class="cluster-name">穩定交往中 (15.79%)</span>
+                    <p style="font-size: 0.85rem;">活躍值最高 (42.5)，是值得升溫的潛力客群。</p>
+                </div>
+                <div class="cluster-card">
+                    <span class="cluster-name">流老老 (15.79%)</span>
+                    <p style="font-size: 0.85rem;">具高歷史價值但近期沉寂，需重新喚醒。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>04. Strategic Outcome</h2>
+            <p>針對不同集群，我制定了精準行銷對策：</p>
+            <ul>
+                <li><strong>高忠生：</strong> 導入 VIP 分級制與職業導向補貨包 。</li>
+                <li><strong>穩定交往中：</strong> 針對學歷層設計專業性或組合實用性內容。</li>
+                <li><strong>睡美人/流老老：</strong> 設計「老朋友回娘家」專屬提醒與回憶式明細。</li>
+            </ul>
+            
+            <div class="image-grid" style="grid-template-columns: 1fr;">
+                <div>
+                    <img src="image/data-summary.png" alt="Marketing Summary" class="project-img">
+                    <p class="image-caption">Fig 3. 獲利指標分析與行銷策略總結 </p>
+                </div>
+            </div>
+        </section>
+
+        <div style="height: 5rem;"></div>
+    </div>
+</body>
+</html>
